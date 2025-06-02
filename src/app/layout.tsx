@@ -5,9 +5,9 @@ import { ThemeProvider } from "@/components/theme-provider";
 import MainNavbar from "@/components/navbars/MainNavbar";
 
 import { Nunito } from "next/font/google";
+import Footer from "@/components/Footers/MainFooter";
 
 const inter = Nunito({ subsets: ["latin"] });
-
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -26,10 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.className} ${geistMono.className} antialiased`}
-      >
+      <body className={`${inter.className} ${geistMono.className} antialiased`}>
         <div className="">{children}</div>
+        <Footer />
       </body>
     </html>
   );
