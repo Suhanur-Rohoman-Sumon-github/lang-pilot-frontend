@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 import { Card, CardContent } from "@/components/ui/card";
 import FAQSection from "./FAQSection";
+import Title from "../Title/Title";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -24,15 +25,11 @@ const OtherSection = () => {
     <div>
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div {...fadeInUp} className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Everything You Need to Learn English
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our comprehensive platform combines AI-powered learning, real
-              conversations, and interactive practice.
-            </p>
-          </motion.div>
+          <Title
+            title=" Everything You Need to Learn English"
+            subTitle=" Our comprehensive platform combines AI-powered learning, real conversations,
+    and interactive practice."
+          />
 
           <motion.div
             variants={staggerContainer}
@@ -60,7 +57,7 @@ const OtherSection = () => {
                   "24/7 AI tutor for grammar questions, conversation practice, and personalized feedback.",
                 icon: "🤖",
               },
-            ].map((feature, index) => (
+            ].map((feature) => (
               <motion.div key={feature.title} variants={fadeInUp}>
                 <Card className="h-full hover:shadow-lg transition-shadow">
                   <CardContent className="p-8 text-center">
@@ -80,11 +77,10 @@ const OtherSection = () => {
       {/* Testimonials Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div {...fadeInUp} className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              What Our Students Say
-            </h2>
-          </motion.div>
+          <Title
+            title="What Our Learners Say"
+            subTitle="Real stories from real users who transformed their English skills with EnglishMaster."
+          />
 
           <motion.div
             variants={staggerContainer}
@@ -112,12 +108,12 @@ const OtherSection = () => {
                 text: "The Learn With Me videos made grammar so much easier to understand. Highly recommended!",
                 avatar: "👩‍💻",
               },
-            ].map((testimonial, index) => (
+            ].map((testimonial, ) => (
               <motion.div key={testimonial.name} variants={fadeInUp}>
                 <Card className="h-full">
                   <CardContent className="p-6">
                     <p className="text-gray-600 mb-4 italic">
-                      "{testimonial.text}"
+                      &quot;{testimonial.text}&quot;
                     </p>
                     <div className="flex items-center">
                       <div className="text-2xl mr-3">{testimonial.avatar}</div>
@@ -139,11 +135,10 @@ const OtherSection = () => {
       {/* Free vs Premium Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div {...fadeInUp} className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Choose Your Learning Path
-            </h2>
-          </motion.div>
+          <Title
+            title="Choose Your Plan"
+            subTitle="Get started with our Free Plan or unlock the full potential with Premium."
+          />
 
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -190,7 +185,7 @@ const OtherSection = () => {
             {/* Premium Plan */}
             <Card className="relative border-primary border-2">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <span className="bg-primary text-white px-4 py-1 rounded-full text-sm font-medium">
+                <span className=" text-white px-4 py-1 rounded-full text-sm font-medium bg-[#006bff]">
                   Most Popular
                 </span>
               </div>
@@ -221,7 +216,7 @@ const OtherSection = () => {
                     practice & feedback
                   </li>
                 </ul>
-                <Button className="w-full bg-primary hover:bg-blue-700">
+                <Button className="w-full  bg-[#006bff] hover:bg-blue-600 transition-colors">
                   Subscribe & Learn
                 </Button>
               </CardContent>
@@ -234,15 +229,10 @@ const OtherSection = () => {
       {/* Progress Tracking Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div {...fadeInUp} className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Track Your Progress
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Visual dashboards and weekly reports help you stay motivated and
-              see how far you've come.
-            </p>
-          </motion.div>
+          <Title
+            title="Track Your Progress"
+            subTitle="Stay motivated with personalized goals, weekly reports, and a global community."
+          />
 
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -278,15 +268,10 @@ const OtherSection = () => {
       {/* Global Community Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div {...fadeInUp} className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Join a Global Community
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Connect with learners from around the world, share tips, and
-              practice English together.
-            </p>
-          </motion.div>
+          <Title
+            title="Join Our Global Community"
+            subTitle="Connect with learners worldwide through group chats, live events, and peer support."
+          />
 
           <motion.div
             variants={staggerContainer}

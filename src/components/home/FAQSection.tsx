@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react"; // make sure you have lucide-react installed
+import Title from "../Title/Title";
 
 const faqs = [
   {
@@ -35,20 +36,10 @@ const FAQSection = () => {
   return (
     <section className="py-20 bg-gray-100">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            Frequently Asked Questions
-          </h2>
-          <p className="text-lg text-gray-600">
-            Got questions? We've got answers!
-          </p>
-        </motion.div>
+        <Title
+          title="Frequently Asked Questions"
+          subTitle="Got questions? We have answers! Here are some of the most common queries we receive."
+        />
 
         <div className="space-y-4">
           {faqs.map((faq, index) => (

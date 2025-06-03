@@ -15,7 +15,7 @@ const MainNavbar = () => {
     { name: "Learn", path: "/learn" },
     { name: "Practice", path: "/practice" },
     { name: "Pricing", path: "/pricing" },
-    { name: "Company", path: "/company" },
+    { name: "Library", path: "/Library" },
   ];
 
   return (

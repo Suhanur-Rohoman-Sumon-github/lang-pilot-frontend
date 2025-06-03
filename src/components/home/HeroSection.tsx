@@ -1,21 +1,23 @@
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
 import Image from "next/image";
-import MainNavbar from "../navbars/MainNavbar";
+
+
 
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex flex-col bg-gradient-to-br  overflow-hidden ">
-      {/* Navbar */}
-      <MainNavbar />
-
-      {/* Animated background elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-purple-500/5 to-blue-500/5 rounded-full blur-3xl"></div>
+      <div className="absolute inset-0 z-[-20]">
+        <Image
+          src="https://i.ibb.co/hxvY0x92/Whats-App-Image-2025-06-03-at-01-22-35-df44fab2.jpg" // ✅ Replace with your actual image path
+          alt="Background"
+          layout="fill"
+          objectFit="cover"
+          className=""
+          priority
+        />
       </div>
+      {/* Navbar */}
+  
 
       {/* Hero Content */}
       <div className="container mx-auto px-6 flex-1 flex items-center relative z-10 max-w-7xl  ">
@@ -57,8 +59,6 @@ const Hero = () => {
                   Start a Free Trial →
                 </button>
               </div>
-
-             
             </motion.div>
           </div>
 
