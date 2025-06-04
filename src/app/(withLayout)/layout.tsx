@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Geist_Mono } from "next/font/google";
 import "../../styel/globals.css";
 
 import { Rubik } from "next/font/google";
