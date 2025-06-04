@@ -4,18 +4,18 @@ import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { IoLogInOutline } from "react-icons/io5";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { useUser } from "@/context/userProvider";
+// import {
+//   DropdownMenu,
+//   DropdownMenuContent,
+//   DropdownMenuItem,
+//   DropdownMenuTrigger,
+// } from "../ui/dropdown-menu";
+// import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+// import { useUser } from "@/context/userProvider";
 
 import Image from "next/image";
 const MainNavbar = () => {
-  const { user, isLoading } = useUser();
+  // const { user, isLoading } = useUser();
   const [isOpen, setIsOpen] = useState(false);
   const [activeLink, setActiveLink] = useState<string>(""); // State to track active link
 
@@ -24,9 +24,9 @@ const MainNavbar = () => {
     setActiveLink(link);
   };
 
-  const handleLogout = () => {
-    // logout();
-  };
+  // const handleLogout = () => {
+  //   // logout();
+  // };
 
   return (
     <nav className="shadow-md w-full fixed top-0 left-0 z-50 backdrop-blur-md py-1 border-b  border-white/20">
