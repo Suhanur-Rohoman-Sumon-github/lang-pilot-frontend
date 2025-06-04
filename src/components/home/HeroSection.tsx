@@ -1,14 +1,10 @@
 import {
-  FaBookOpen,
   FaHeadphones,
-  FaKeyboard,
   FaChalkboardTeacher,
   FaRocket,
   FaLaughBeam,
   FaGlobe,
   FaMagic,
-  FaLightbulb,
-  FaPenFancy,
   FaBrain,
   FaComments,
 } from "react-icons/fa";
