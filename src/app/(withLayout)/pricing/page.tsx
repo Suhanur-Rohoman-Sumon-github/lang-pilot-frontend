@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-
+import { plans } from "@/data/data";
 
 const Pricing = () => {
   const fadeInUp = {
@@ -15,68 +15,7 @@ const Pricing = () => {
     transition: { duration: 0.6 },
   };
 
-  const plans = [
-    {
-      name: "Free",
-      price: "$0",
-      period: "forever",
-      description: "Perfect for getting started",
-      features: [
-        "5 practice sessions per day",
-        "Basic Learn With Me videos",
-        "Limited AI assistant (10 questions/day)",
-        "Basic grammar exercises",
-        "Community access",
-      ],
-      limitations: [
-        "No speaking practice",
-        "No real-time corrections",
-        "Limited content access",
-      ],
-      buttonText: "Get Started Free",
-      buttonVariant: "outline" as const,
-      popular: false,
-    },
-    {
-      name: "Pro Monthly",
-      price: "$19",
-      period: "per month",
-      description: "Full access to all features",
-      features: [
-        "Unlimited practice sessions",
-        "All Learn With Me videos + notes",
-        "Advanced AI assistant (unlimited)",
-        "Real-time grammar corrections",
-        "Speaking practice with feedback",
-        "Pronunciation training",
-        "Progress tracking & analytics",
-        "Downloadable resources",
-        "Priority support",
-      ],
-      limitations: [],
-      buttonText: "Subscribe & Learn",
-      buttonVariant: "default" as const,
-      popular: true,
-    },
-    {
-      name: "Pro Yearly",
-      price: "$190",
-      period: "per year",
-      originalPrice: "$228",
-      description: "Save 17% with annual billing",
-      features: [
-        "All Pro Monthly features",
-        "2 months free (save $38)",
-        "Exclusive yearly webinars",
-        "Early access to new features",
-        "Bonus: English proficiency certificate",
-      ],
-      limitations: [],
-      buttonText: "Subscribe & Save",
-      buttonVariant: "default" as const,
-      popular: false,
-    },
-  ];
+  
 
   return (
     <div className="min-h-screen py-20">
@@ -182,7 +121,7 @@ const Pricing = () => {
                   <Button
                     variant={plan.buttonVariant}
                     className={`w-full ${
-                      plan.popular ? "bg-primary hover:bg-blue-700" : ""
+                      plan.popular ? "button-primary" : ""
                     }`}
                     size="lg"
                   >
@@ -238,7 +177,7 @@ const Pricing = () => {
                   ["Certificate", "✗", "✗", "✓"],
                   ["Support", "Community", "Priority", "Priority"],
                 ].map(([feature, free, monthly, yearly], index) => (
-                  <tr key={index} className="hover:bg-white">
+                  <tr key={index} className="hover:">
                     <td className="py-4 px-4 font-medium">{feature}</td>
                     <td className="py-4 px-4 text-center">{free}</td>
                     <td className="py-4 px-4 text-center">{monthly}</td>

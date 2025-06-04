@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react"; // make sure you have lucide-react installed
+import { ChevronDown } from "lucide-react";
 import Title from "../Title/Title";
 
 const faqs = [
@@ -24,6 +24,26 @@ const faqs = [
     answer:
       "Our AI assistant provides instant answers to grammar questions, conversation practice, and feedback based on your input.",
   },
+  {
+    question: "Is there a mobile app available?",
+    answer:
+      "Yes, we offer a fully-featured mobile app for both iOS and Android to learn on the go.",
+  },
+  {
+    question: "Do I need internet access to use the platform?",
+    answer:
+      "For most features, yes. However, you can download lessons and practice offline in the mobile app.",
+  },
+  {
+    question: "Can I track my progress?",
+    answer:
+      "Yes! Our dashboard provides detailed insights into your learning journey, including completed lessons and AI feedback.",
+  },
+  {
+    question: "Is it suitable for complete beginners?",
+    answer:
+      "Definitely. Our lessons start from the basics and grow with you. The AI tailors content to your level and pace.",
+  },
 ];
 
 const FAQSection = () => {
@@ -34,29 +54,28 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="py-20 bg-gray-100">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20  text-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <Title
           title="Frequently Asked Questions"
           subTitle="Got questions? We have answers! Here are some of the most common queries we receive."
         />
 
-        <div className="space-y-4">
+        <div className="grid md:grid-cols-2 gap-6 mt-10">
           {faqs.map((faq, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-white p-5 rounded-lg shadow cursor-pointer"
               onClick={() => toggleFAQ(index)}
+              className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 cursor-pointer shadow-lg transition-all duration-300 hover:shadow-xl"
+              whileHover={{ scale: 1.02 }}
             >
               <div className="flex items-center justify-between">
-                <h3 className="text-lg font-semibold text-gray-900">
-                  {faq.question}
-                </h3>
+                <h3 className="text-lg font-semibold">{faq.question}</h3>
                 <motion.div
                   animate={{ rotate: activeIndex === index ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <ChevronDown className="w-5 h-5 text-gray-600" />
+                  <ChevronDown className="w-5 h-5 text-white" />
                 </motion.div>
               </div>
 
@@ -70,11 +89,11 @@ const FAQSection = () => {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden mt-3"
                   >
-                    <p className="text-gray-600">{faq.answer}</p>
+                    <p className="text-white/80">{faq.answer}</p>
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

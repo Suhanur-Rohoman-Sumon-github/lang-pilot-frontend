@@ -189,7 +189,7 @@ const EnglishPracticePage = () => {
                 placeholder="Your spoken answer appears here"
               />
               <Button
-                className="bg-[#006bff] text-white hover:bg-blue-600"
+                className="bg-[#c540e1] text-white hover:bg-blue-600"
                 onClick={() => handleSpeechToText(q.id)}
               >
                 <FaMicrophone

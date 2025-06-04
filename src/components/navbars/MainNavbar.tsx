@@ -1,109 +1,153 @@
 "use client";
 
-import React, { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import { IoLogInOutline } from "react-icons/io5";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { useUser } from "@/context/userProvider";
 
+import Image from "next/image";
 const MainNavbar = () => {
+  const { user, isLoading } = useUser();
   const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname();
+  const [activeLink, setActiveLink] = useState<string>(""); // State to track active link
 
-  const navItems = [
-    { name: "Home", path: "/" },
-    { name: "Learn", path: "/learn" },
-    { name: "Practice", path: "/practice" },
-    { name: "Pricing", path: "/pricing" },
-    { name: "Library", path: "/Library" },
-  ];
+  // Function to handle active link
+  const handleLinkClick = (link: string) => {
+    setActiveLink(link);
+  };
+
+  const handleLogout = () => {
+    // logout();
+  };
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className="border-b sticky top-0 z-50 "
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+    <nav className="shadow-md w-full fixed top-0 left-0 z-50 backdrop-blur-md py-1 border-b  border-white/20">
+      <div className="max-w-7xl mx-auto ">
+        <div className="flex justify-between h-16 items-center">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="text-2xl font-bold text-primary"
-            >
-              EnglishMaster
-            </motion.div>
-          </Link>
-
-          {/* Desktop Nav */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.path}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    pathname === item.path
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-primary"
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
+          <div className="">
+            <Link className="" href="/" onClick={() => handleLinkClick("home")}>
+              <Image
+                src={
+                  "https://i.ibb.co.com/rGrLVCZs/Chat-GPT-Image-Apr-24-2025-02-07-44-PM-removebg-preview.png"
+                }
+                alt="logo"
+                height={80}
+                width={80}
+              />
+            </Link>
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden  md:flex md:items-center gap-4">
+          {/* Center Nav Links (Desktop) */}
+          <div className="hidden md:flex md:space-x-3 lg:space-x-8 text-white md:text-[14px] text-base lg:text-base font-medium">
+            <Link
+              href="/"
+              onClick={() => handleLinkClick("home")}
+              className={`${
+                activeLink === "home" ? "text-gray-400" : "text-white"
+              } hover:bg-gradient-to-r hover:text-gray-500 hover:bg-clip-text transition`}
+            >
+              Home
+            </Link>
+            <Link
+              href="/about"
+              onClick={() => handleLinkClick("about")}
+              className={`${
+                activeLink === "about" ? "text-gray-400" : "text-white"
+              } hover:bg-gradient-to-r hover:text-gray-500 hover:bg-clip-text transition`}
+            >
+              About
+            </Link>
+            <Link
+              href="/services"
+              onClick={() => handleLinkClick("services")}
+              className={`${
+                activeLink === "services" ? "text-gray-400" : "text-white"
+              } hover:bg-gradient-to-r hover:text-gray-500 hover:bg-clip-text transition`}
+            >
+              Services
+            </Link>
+
+            <Link
+              href="/pricing"
+              onClick={() => handleLinkClick("pricing")}
+              className={`${
+                activeLink === "pricing" ? "text-gray-400" : "text-white"
+              } hover:bg-gradient-to-r hover:text-gray-500 hover:bg-clip-text transition`}
+            >
+              Pricing
+            </Link>
+            <Link
+              href="/contact"
+              onClick={() => handleLinkClick("contact")}
+              className={`${
+                activeLink === "contact" ? "text-gray-400" : "text-white"
+              } hover:bg-gradient-to-r hover:text-gray-500 hover:bg-clip-text transition`}
+            >
+              Contact
+            </Link>
+            <Link
+              href="/marketplaces"
+              onClick={() => handleLinkClick("marketplaces")}
+              className={`${
+                activeLink === "marketplaces" ? "text-gray-400" : "text-white"
+              } hover:bg-gradient-to-r hover:text-gray-500 hover:bg-clip-text transition`}
+            >
+              Marketplace
+            </Link>
+          </div>
+
+          {/* Login Button (Desktop) */}
+          {/* <div className="hidden md:flex items-center space-x-4">
+            {isLoading ? (
+              <div className="flex items-center justify-center h-screen"></div>
+            ) : user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Avatar className="cursor-pointer">
+                    <AvatarImage src={user?.profilePicture || "/avatar.png"} />
+                    <AvatarFallback>
+                      {user?.name?.charAt(0) || "U"}
+                    </AvatarFallback>
+                  </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-40 mt-2">
+                  <DropdownMenuItem onClick={handleLogout}>
+                    Logout
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
+          </div> */}
+          <div className="hidden md:flex items-center space-x-4">
             <Link
               href="/login"
-              className="ml-4 text-sm text-muted-foreground hover:text-primary"
+              onClick={() => handleLinkClick("contact")}
+              className={`${
+                activeLink === "contact" ? "text-gray-400" : "text-white"
+              } hover:bg-gradient-to-r hover:text-gray-500 hover:bg-clip-text transition`}
             >
               Login
             </Link>
-            <Button className="bg-[#006bff] text-white px-6 py-3 rounded-md  transition hover:bg-[#0056d2]">
-              join
-            </Button>
+            <Link href="/signup">
+              <button className="button-primary flex items-center gap-2">
+                Join <IoLogInOutline className="text-2xl" />
+              </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-foreground hover:text-primary"
-            >
-              <span className="sr-only">Open main menu</span>
-              {isOpen ? (
-                <svg
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              )}
+            <button onClick={() => setIsOpen(!isOpen)} className="text-white">
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
@@ -111,34 +155,52 @@ const MainNavbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          className="md:hidden"
-        >
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.path}
-                className={`block px-3 py-2 rounded-md text-base font-medium ${
-                  pathname === item.path
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-primary"
-                }`}
-                onClick={() => setIsOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
-            <div className="px-3 py-2">
-              <Button className="w-full">Start Learning Free</Button>
-            </div>
-          </div>
-        </motion.div>
+        <div className="md:hidden flex flex-col gap-5 items-center justify-center bg-[#04091d]/90 backdrop-blur-md shadow-lg px-4 py-3 space-y-3 border-t border-white/10">
+          <Link
+            href="/"
+            onClick={() => handleLinkClick("home")}
+            className={`${
+              activeLink === "home" ? "text-gray-400" : "text-white"
+            } hover:bg-gradient-to-r hover:text-gray-500 hover:bg-clip-text transition`}
+          >
+            Home
+          </Link>
+          <Link
+            href="/about"
+            onClick={() => handleLinkClick("about")}
+            className={`${
+              activeLink === "about" ? "text-gray-400" : "text-white"
+            } hover:bg-gradient-to-r hover:text-gray-500 hover:bg-clip-text transition`}
+          >
+            About
+          </Link>
+          <Link
+            href="/services"
+            onClick={() => handleLinkClick("services")}
+            className={`${
+              activeLink === "services" ? "text-gray-400" : "text-white"
+            } hover:bg-gradient-to-r hover:text-gray-500 hover:bg-clip-text transition`}
+          >
+            Services
+          </Link>
+          <Link
+            href="/contact"
+            onClick={() => handleLinkClick("contact")}
+            className={`${
+              activeLink === "contact" ? "text-gray-400" : "text-white"
+            } hover:bg-gradient-to-r hover:text-gray-500 hover:bg-clip-text transition`}
+          >
+            Contact
+          </Link>
+          <Link
+            href="/login"
+            className="block text-white font-semibold pt-2 hover:bg-gradient-to-r hover:text-gray-500 hover:bg-clip-text transition"
+          >
+            Login
+          </Link>
+        </div>
       )}
-    </motion.nav>
+    </nav>
   );
 };
 

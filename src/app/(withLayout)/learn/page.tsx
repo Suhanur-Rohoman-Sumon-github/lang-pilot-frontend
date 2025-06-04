@@ -303,10 +303,7 @@ const LearnWithMe = () => {
                 tip: "Schedule time every day or week to stay consistent with your learning.",
               },
             ].map((tip, idx) => (
-              <div
-                key={idx}
-                className="bg-white p-6 rounded-xl shadow-sm text-center"
-              >
+              <div key={idx} className=" p-6 rounded-xl shadow-sm text-center">
                 <div className="text-4xl mb-4">{tip.icon}</div>
                 <h3 className="text-lg font-semibold mb-2">{tip.title}</h3>
                 <p className="text-gray-600 text-sm">{tip.tip}</p>

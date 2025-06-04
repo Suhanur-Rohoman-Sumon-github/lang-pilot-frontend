@@ -29,11 +29,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${rubik.className} ${geistMono.className} antialiased`}>
+      <body className={`${rubik.className}  antialiased`}>
         <Providers>
-          <MainNavbar />
-          <div className="">{children}</div>
-          <Footer />
+          <div className="bg-[#0f144b] text-white min-h-screen flex flex-col">
+            <MainNavbar />
+            <div className="">{children}</div>
+            <Footer />
+          </div>
         </Providers>
       </body>
     </html>
