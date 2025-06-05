@@ -58,24 +58,25 @@ const MainNavbar = () => {
               Home
             </Link>
             <Link
-              href="/about"
-              onClick={() => handleLinkClick("about")}
+              href="/learn"
+              onClick={() => handleLinkClick("learn")}
               className={`${
-                activeLink === "about" ? "text-gray-400" : "text-white"
+                activeLink === "learn" ? "text-gray-400" : "text-white"
               } hover:bg-gradient-to-r hover:text-gray-500 hover:bg-clip-text transition`}
             >
-              About
+              Learn
             </Link>
             <Link
-              href="/services"
-              onClick={() => handleLinkClick("services")}
+              href="/practice"
+              onClick={() => handleLinkClick("practice")}
               className={`${
-                activeLink === "services" ? "text-gray-400" : "text-white"
+                activeLink === "practice" ? "text-gray-400" : "text-white"
               } hover:bg-gradient-to-r hover:text-gray-500 hover:bg-clip-text transition`}
             >
-              Services
+              Practice
             </Link>
 
+           
             <Link
               href="/pricing"
               onClick={() => handleLinkClick("pricing")}
@@ -86,22 +87,13 @@ const MainNavbar = () => {
               Pricing
             </Link>
             <Link
-              href="/contact"
-              onClick={() => handleLinkClick("contact")}
+              href="/library"
+              onClick={() => handleLinkClick("library")}
               className={`${
-                activeLink === "contact" ? "text-gray-400" : "text-white"
+                activeLink === "library" ? "text-gray-400" : "text-white"
               } hover:bg-gradient-to-r hover:text-gray-500 hover:bg-clip-text transition`}
             >
-              Contact
-            </Link>
-            <Link
-              href="/marketplaces"
-              onClick={() => handleLinkClick("marketplaces")}
-              className={`${
-                activeLink === "marketplaces" ? "text-gray-400" : "text-white"
-              } hover:bg-gradient-to-r hover:text-gray-500 hover:bg-clip-text transition`}
-            >
-              Marketplace
+              Library
             </Link>
           </div>
 
@@ -155,48 +147,79 @@ const MainNavbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden flex flex-col gap-5 items-center justify-center bg-[#04091d]/90 backdrop-blur-md shadow-lg px-4 py-3 space-y-3 border-t border-white/10">
+        <div className="fixed top-0 left-0 w-full h-screen bg-[#04091d]/95 backdrop-blur-md z-50 flex flex-col items-center justify-center gap-6 text-white text-lg font-medium">
+          {/* Close Button */}
+          <button
+            onClick={() => setIsOpen(false)}
+            className="absolute top-4 right-4 text-white"
+          >
+            <X size={28} />
+          </button>
+
+          {/* Mobile Links */}
           <Link
             href="/"
-            onClick={() => handleLinkClick("home")}
-            className={`${
-              activeLink === "home" ? "text-gray-400" : "text-white"
-            } hover:bg-gradient-to-r hover:text-gray-500 hover:bg-clip-text transition`}
+            onClick={() => {
+              handleLinkClick("home");
+              setIsOpen(false);
+            }}
           >
             Home
           </Link>
           <Link
-            href="/about"
-            onClick={() => handleLinkClick("about")}
-            className={`${
-              activeLink === "about" ? "text-gray-400" : "text-white"
-            } hover:bg-gradient-to-r hover:text-gray-500 hover:bg-clip-text transition`}
+            href="/learn"
+            onClick={() => {
+              handleLinkClick("learn");
+              setIsOpen(false);
+            }}
           >
-            About
+            Learn
           </Link>
           <Link
-            href="/services"
-            onClick={() => handleLinkClick("services")}
-            className={`${
-              activeLink === "services" ? "text-gray-400" : "text-white"
-            } hover:bg-gradient-to-r hover:text-gray-500 hover:bg-clip-text transition`}
+            href="/practice"
+            onClick={() => {
+              handleLinkClick("practice");
+              setIsOpen(false);
+            }}
           >
-            Services
+            Practice
           </Link>
           <Link
-            href="/contact"
-            onClick={() => handleLinkClick("contact")}
-            className={`${
-              activeLink === "contact" ? "text-gray-400" : "text-white"
-            } hover:bg-gradient-to-r hover:text-gray-500 hover:bg-clip-text transition`}
+            href="/company"
+            onClick={() => {
+              handleLinkClick("company");
+              setIsOpen(false);
+            }}
           >
-            Contact
+            Company
           </Link>
           <Link
-            href="/login"
-            className="block text-white font-semibold pt-2 hover:bg-gradient-to-r hover:text-gray-500 hover:bg-clip-text transition"
+            href="/pricing"
+            onClick={() => {
+              handleLinkClick("pricing");
+              setIsOpen(false);
+            }}
           >
+            Pricing
+          </Link>
+          <Link
+            href="/library"
+            onClick={() => {
+              handleLinkClick("library");
+              setIsOpen(false);
+            }}
+          >
+            Library
+          </Link>
+          <Link href="/login" onClick={() => setIsOpen(false)}>
             Login
+          </Link>
+          <Link
+            href="/signup"
+            onClick={() => setIsOpen(false)}
+            className="button-primary"
+          >
+            Join
           </Link>
         </div>
       )}

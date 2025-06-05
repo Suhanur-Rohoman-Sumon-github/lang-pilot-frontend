@@ -1,21 +1,43 @@
+import { useState, useEffect } from "react";
 import { languages } from "@/data/data";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Title from "../Title/Title";
 
 const LanguageSelector = () => {
+  const [showAll, setShowAll] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if the screen size is mobile
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize(); // set on mount
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Limit display count based on screen size
+  const displayedLanguages = () => {
+    if (showAll) return languages;
+    if (isMobile) return languages.slice(0, 2);
+    return languages.slice(0, 4);
+  };
+
   return (
-    <section className="py-16 bg-gradient-to-b  text-center">
+    <section className="py-16 bg-gradient-to-b text-center">
       <div className="mb-10">
         <Title
-          title=" Choose Your Native Language"
-          subTitle="We’ll help you learn English more effectively based on your native
-          tongue."
+          title="Choose Your Native Language"
+          subTitle="We’ll help you learn English more effectively based on your native tongue."
         />
       </div>
 
       <div className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto px-4">
-        {languages.map((lang, index) => (
+        {displayedLanguages().map((lang, index) => (
           <motion.div
             key={lang.name}
             className="flex items-center gap-4 px-6 py-4 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer"
@@ -39,6 +61,18 @@ const LanguageSelector = () => {
           </motion.div>
         ))}
       </div>
+
+      {/* Show More button for mobile */}
+      {!showAll && (
+        <div className="mt-8 items-center justify-center flex">
+          <button
+            onClick={() => setShowAll(true)}
+            className="button-primary "
+          >
+            Show More
+          </button>
+        </div>
+      )}
     </section>
   );
 };

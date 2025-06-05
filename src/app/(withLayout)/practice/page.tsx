@@ -8,6 +8,7 @@ import { FaMicrophone } from "react-icons/fa";
 import Image from "next/image";
 import { Progress } from "@/components/ui/progress"; // Make sure you have a progress bar component
 import stringSimilarity from "string-similarity";
+import Title from "@/components/Title/Title";
 declare global {
   interface Window {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -158,17 +159,20 @@ const EnglishPracticePage = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
-      <h1 className="text-3xl font-bold text-center mb-6">
-        🎤 Practice English Speaking
-      </h1>
-      <p className="text-center text-gray-600 mb-10 max-w-2xl mx-auto">
-        Answer the questions by speaking in full sentences. Click the mic and
-        get real-time feedback!
-      </p>
+      <div className="mt-12">
+        <Title
+          subTitle="Answer the questions by speaking in full sentences. Click the mic and
+        get real-time feedback! "
+          title="🎤 Practice English Speaking"
+        />
+      </div>
 
       <div className="grid gap-6 grid-cols-1 md:grid-cols-3">
         {questions.map((q) => (
-          <Card key={q.id} className="p-5 flex flex-col gap-4 shadow-md">
+          <Card
+            key={q.id}
+            className="rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl p-4"
+          >
             <Image
               src={q.image}
               alt="Question"
@@ -176,9 +180,9 @@ const EnglishPracticePage = () => {
               height={400}
               className="w-full h-48 object-cover rounded"
             />
-            <p className="font-semibold">{q.question}</p>
+            <p className="text-white">{q.question}</p>
 
-            <p className="text-sm text-gray-500 italic">
+            <p className="text-sm text-secondary italic">
               💡 Sample Answer: {q.sampleAnswer}
             </p>
 
@@ -187,6 +191,7 @@ const EnglishPracticePage = () => {
                 value={answers[q.id] || ""}
                 onChange={(e) => handleInputChange(q.id, e.target.value)}
                 placeholder="Your spoken answer appears here"
+                className="text-white"
               />
               <Button
                 className="bg-[#c540e1] text-white hover:bg-blue-600"
@@ -199,7 +204,7 @@ const EnglishPracticePage = () => {
             </div>
 
             <div className="mt-2">
-              <p className="text-sm font-medium text-gray-700">
+              <p className="text-sm font-medium text-white">
                 🔎 Feedback Score: {feedback[q.id] || 0}%
               </p>
               <Progress value={feedback[q.id] || 0} className="h-2 mt-1" />

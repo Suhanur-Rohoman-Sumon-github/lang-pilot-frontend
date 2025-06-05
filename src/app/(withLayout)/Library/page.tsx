@@ -1,210 +1,132 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import React from "react";
 
-// ...your same book arrays (personalizedBooks, weeklyBooks, affiliateBooks)...
-
-const BookGrid = ({
-  title,
-  books,
-  isAffiliate = false,
-}: {
-  title: string;
-  books: any[];
-  isAffiliate?: boolean;
-}) => (
-  <>
-    <h2 className="text-2xl font-semibold mb-6">{title}</h2>
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mb-16">
-      {books.map((book, i) => (
-        <Card
-          key={i}
-          className="overflow-hidden shadow-sm hover:shadow-md transition duration-300"
-        >
-          <div className="relative w-full h-40">
-            {isAffiliate ? (
-              <a href={book.link} target="_blank" rel="noopener noreferrer">
-                <Image
-                  src={book.image}
-                  alt={book.title}
-                  fill
-                  className="object-cover"
-                />
-              </a>
-            ) : (
-              <Image
-                src={book.image}
-                alt={book.title}
-                fill
-                className="object-cover"
-              />
-            )}
-          </div>
-          <CardContent className="p-3">
-            <h3 className="text-sm font-semibold mb-1">{book.title}</h3>
-            <p className="text-xs text-gray-600 mb-2 line-clamp-2">
-              {book.description}
-            </p>
-            <div className="flex justify-between items-center">
-              <span className="text-blue-600 text-sm font-bold">
-                {book.price ?? ""}
-              </span>
-              {isAffiliate ? (
-                <a
-                  href={book.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs"
-                >
-                  <Button variant="outline" className="px-2 py-1 text-xs">
-                    {book.action}
-                  </Button>
-                </a>
-              ) : (
-                <Button className="px-2 py-1 text-xs">{book.action}</Button>
-              )}
-            </div>
-          </CardContent>
-        </Card>
-      ))}
-    </div>
-  </>
-);
-
-const EbookPlatform = () => {
-  const affiliateBooks = [
-    {
-      title: "Atomic Habits by James Clear",
-      description:
-        "Build habits that last, perfect for English learners wanting consistency.",
-      image: "https://images-na.ssl-images-amazon.com/images/I/91bYsX41DVL.jpg",
-      action: "Buy on Amazon",
-      link: "https://www.amazon.com/dp/0735211299",
-    },
-    {
-      title: "Word Power Made Easy",
-      description: "Classic vocabulary builder for learners and test-takers.",
-      image: "https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg",
-      action: "Buy on Amazon",
-      link: "https://www.amazon.com/dp/110187385X",
-    },
-    {
-      title: "English Grammar in Use",
-      description:
-        "The most popular grammar reference for intermediate learners.",
-      image: "https://images-na.ssl-images-amazon.com/images/I/71snN5fqHYL.jpg",
-      action: "Buy on Amazon",
-      link: "https://www.amazon.com/dp/1108457657",
-    },
-    {
-      title: "The Elements of Style",
-      description:
-        "A timeless guide to clear and concise writing – great for learners.",
-      image: "https://images-na.ssl-images-amazon.com/images/I/71N4oeWwYlL.jpg",
-      action: "Buy on Amazon",
-      link: "https://www.amazon.com/dp/020530902X",
-    },
-  ];
-
-  const weeklyBooks = [
-    {
-      title: "English Weekly #22",
-      description: "This week's topic: Business Communication + Phrasal Verbs.",
-      image:
-        "https://images.unsplash.com/photo-1528207776546-365bb710ee93?fit=crop&w=600&q=80",
-      price: "$3.99",
-      action: "Buy Now",
-    },
-    {
-      title: "English Weekly #23",
-      description: "Focus: Common grammar mistakes & storytelling.",
-      image:
-        "https://images.unsplash.com/photo-1522156373667-4c7234bbd804?fit=crop&w=600&q=80",
-      price: "$3.99",
-      action: "Buy Now",
-    },
-    {
-      title: "English Weekly #24",
-      description: "Master small talk and polite expressions.",
-      image:
-        "https://images.unsplash.com/photo-1507842217343-583bb7270b66?fit=crop&w=600&q=80",
-      price: "$3.99",
-      action: "Buy Now",
-    },
-    {
-      title: "English Weekly #25",
-      description: "This edition: Email writing & modern slang explained.",
-      image:
-        "https://images.unsplash.com/photo-1532012197267-da84d127e765?fit=crop&w=600&q=80",
-      price: "$3.99",
-      action: "Buy Now",
-    },
-  ];
-
-  const personalizedBooks = [
-    {
-      title: "Your Personalized English Plan",
-      description:
-        "Get a learning book tailored to your grammar, speaking, and writing goals.",
-      image:
-        "https://images.unsplash.com/photo-1588776814546-d38baf68f08e?fit=crop&w=600&q=80",
-      price: "$9.99",
-      action: "Start Personalizing",
-    },
-    {
-      title: "Custom Daily English Guide",
-      description:
-        "A fully customized plan with daily lessons based on your current level.",
-      image:
-        "https://images.unsplash.com/photo-1512820790803-83ca734da794?fit=crop&w=600&q=80",
-      price: "$14.99",
-      action: "Build My Book",
-    },
-    {
-      title: "Grammar Mastery Roadmap",
-      description: "Fix common grammar issues with daily tailored drills.",
-      image:
-        "https://images.unsplash.com/photo-1604881991720-9a625901bb3c?fit=crop&w=600&q=80",
-      price: "$12.99",
-      action: "Get My Grammar Plan",
-    },
-    {
-      title: "Speaking Booster Blueprint",
-      description:
-        "Improve pronunciation, fluency, and everyday conversation with a custom guide.",
-      image:
-        "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?fit=crop&w=600&q=80",
-      price: "$11.99",
-      action: "Boost My Speaking",
-    },
-  ];
-
+const page = () => {
   return (
-    <section className="py-20 ">
-      <div className="max-w-7xl mx-auto px-4">
-        <h1 className="text-4xl font-bold text-center mb-4">
-          📚 Your English Learning Bookstore
-        </h1>
-        <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-          Discover personalized study plans, weekly curated lessons, and
-          top-rated English improvement books.
-        </p>
+    <div>
+      <section className="min-h-screen py-16 px-4 sm:px-8  text-white">
+        <div className="max-w-7xl mx-auto mt-8">
+          <h2 className="text-4xl font-bold text-center mb-6">
+            📚 Explore English Books
+          </h2>
+          <p className="text-center text-gray-300 mb-12 max-w-2xl mx-auto">
+            Dive into a variety of hand-picked English learning books including
+            grammar, vocabulary, IELTS prep, and more.
+          </p>
 
-        <BookGrid
-          title="🧠 Personalized English Books"
-          books={personalizedBooks}
-        />
-        <BookGrid title="📅 Weekly eBooks" books={weeklyBooks} />
-        <BookGrid
-          title="🔗 Recommended from Amazon"
-          books={affiliateBooks}
-          isAffiliate
-        />
-      </div>
-    </section>
+          {/* Featured Row */}
+          <div className="grid md:grid-cols-2 gap-8 mb-16">
+            <div className="relative rounded-2xl overflow-hidden shadow-lg bg-white/10 backdrop-blur-md p-6 hover:scale-105 transition">
+              <Image
+                width={400}
+                height={300}
+                src="https://images.unsplash.com/photo-1596495577886-d920f1fb7238?auto=format&fit=crop&w=700&q=80"
+                alt="English Grammar"
+                className="w-full h-60 object-cover rounded-lg mb-4"
+              />
+              <h3 className="text-2xl font-semibold mb-2">
+                Mastering English Grammar
+              </h3>
+              <p className="text-gray-300 text-sm mb-4">
+                An in-depth guide to understanding English grammar for all
+                levels.
+              </p>
+              <button className="button-primary">Read Book</button>
+            </div>
+
+            <div className="relative rounded-2xl overflow-hidden shadow-lg bg-white/10 backdrop-blur-md p-6 hover:scale-105 transition">
+              <Image
+                width={400}
+                height={300}
+                src="https://sellular.com.bd/wp-content/uploads/2023/03/9780241299876.jpg"
+                alt="Vocabulary Builder"
+                className="w-full h-60 object-cover rounded-lg mb-4"
+              />
+              <h3 className="text-2xl font-semibold mb-2">
+                English Vocabulary Builder
+              </h3>
+              <p className="text-gray-300 text-sm mb-4">
+                Improve your vocabulary with daily exercises and curated word
+                lists.
+              </p>
+              <button className="button-primary">Read Book</button>
+            </div>
+          </div>
+
+          {/* Grid of More Books */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                title: "Spoken English Basics",
+                img: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&w=600&q=80",
+              },
+              {
+                title: "IELTS Writing Guide",
+                img: "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?auto=format&fit=crop&w=600&q=80",
+              },
+              {
+                title: "Common Phrases in English",
+                img: "https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=600&q=80",
+              },
+              {
+                title: "English Conversation Tactics",
+                img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80",
+              },
+              {
+                title: "Phrasal Verbs Mastery",
+                img: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80",
+              },
+              {
+                title: "English Idioms & Slang",
+                img: "https://i.pinimg.com/736x/a4/1d/db/a41ddbd229fe406905d50691f9e6d3d7.jpg",
+              },
+              {
+                title: "TOEFL Vocabulary Manual",
+                img: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80",
+              },
+              {
+                title: "Business English Toolkit",
+                img: "https://images.unsplash.com/photo-1497493292307-31c376b6e479?auto=format&fit=crop&w=600&q=80",
+              },
+              {
+                title: "Daily English Challenges",
+                img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80",
+              },
+              {
+                title: "English for Travelers",
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQMWfBac3y5Z3UYc8x_2No_zkBqnswcb8dVQ&s",
+              },
+              {
+                title: "English Listening Practice",
+                img: "https://images.unsplash.com/photo-1532009877282-3340270e0529?auto=format&fit=crop&w=600&q=80",
+              },
+              {
+                title: "Everyday Grammar Essentials",
+                img: "https://images.unsplash.com/photo-1535385793344-539cb183d0c1?auto=format&fit=crop&w=600&q=80",
+              },
+            ].map((book, i) => (
+              <div
+                key={i}
+                className="bg-white/10 backdrop-blur-md rounded-2xl shadow-md overflow-hidden hover:scale-105 transition"
+              >
+                <Image
+                  width={400}
+                  height={300}
+                  src={book.img}
+                  alt={book.title}
+                  className="w-full h-52 object-cover"
+                />
+                <div className="p-4">
+                  <h4 className="text-lg font-semibold mb-2">{book.title}</h4>
+                  <button className="w-full button-primary">Read Now</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 
-export default EbookPlatform;
+export default page;

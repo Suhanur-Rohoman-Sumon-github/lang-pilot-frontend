@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
+import Title from "@/components/Title/Title";
 
 const LearnWithMe = () => {
   const [favoriteVideos, setFavoriteVideos] = useState<string[]>([]);
@@ -130,44 +132,42 @@ const LearnWithMe = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div {...fadeInUp} className="text-center mb-16">
-          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Learn With Me – Videos to Improve Daily
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Curated video lessons to help you master English grammar,
+          <Title
+            title="Learn With Me – Videos to Improve Daily"
+            subTitle="Curated video lessons to help you master English grammar,
             vocabulary, pronunciation, and conversation skills. Perfect for
-            learners from Bangladesh, Africa, and beyond.
-          </p>
+            learners from Bangladesh, Africa, and beyond."
+          />
         </motion.div>
 
-        {/* Stats & Features */}
+        {/* Stats */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 -mt-12 md:-mt-16"
         >
-          <Card>
+          <Card className="rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl ">
             <CardContent className="p-6 text-center">
-              <div className="text-3xl font-bold text-primary mb-2">150+</div>
-              <p className="text-gray-600">Video Lessons</p>
+              <div className="text-3xl font-bold  mb-2 text-white">150+</div>
+              <p className="text-secondary ">Video Lessons</p>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl">
             <CardContent className="p-6 text-center">
-              <div className="text-3xl font-bold text-primary mb-2">25K+</div>
-              <p className="text-gray-600">Students Learning</p>
+              <div className="text-3xl font-bold  mb-2 text-white">25K+</div>
+              <p className=" text-secondary">Students Learning</p>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl">
             <CardContent className="p-6 text-center">
-              <div className="text-3xl font-bold text-primary mb-2">95%</div>
-              <p className="text-gray-600">Improvement Rate</p>
+              <div className="text-3xl font-bold  mb-2 text-white">95%</div>
+              <p className="text-secondary">Improvement Rate</p>
             </CardContent>
           </Card>
         </motion.div>
 
-        {/* Category Filter */}
+        {/* Filter Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -181,8 +181,8 @@ const LearnWithMe = () => {
               onClick={() => setSelectedCategory(category)}
               className={
                 selectedCategory === category
-                  ? "bg-primary hover:bg-blue-700"
-                  : ""
+                  ? "bg-primary "
+                  : "button-primary hover:text-white"
               }
             >
               {category}
@@ -190,7 +190,7 @@ const LearnWithMe = () => {
           ))}
         </motion.div>
 
-        {/* Video Grid */}
+        {/* Video Cards */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -205,22 +205,22 @@ const LearnWithMe = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
             >
-              <Card className="h-full hover:shadow-xl transition-shadow overflow-hidden">
+              <Card className="h-full rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl  overflow-hidden">
                 <div className="relative group">
-                  <img
+                  <Image
+                    width={400}
+                    height={250}
                     src={video.thumbnail}
                     alt={video.title}
                     className="w-full h-48 object-cover"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <Button className="bg-primary hover:bg-blue-700">
-                      ▶ Play Video
-                    </Button>
+                    <Button className="button-primary">▶ Play Video</Button>
                   </div>
                   <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-white px-2 py-1 rounded text-sm">
                     {video.duration}
                   </div>
-                  <div className="absolute top-2 left-2">
+                  <div className="absolute top-2 left-2 text-white">
                     <Badge className={getLevelColor(video.level)}>
                       {video.level}
                     </Badge>
@@ -228,16 +228,18 @@ const LearnWithMe = () => {
                 </div>
 
                 <CardContent className="p-6">
-                  <h3 className="font-semibold text-lg mb-2 line-clamp-2">
+                  <h3 className="font-semibold text-lg mb-2 line-clamp-2 text-white">
                     {video.title}
                   </h3>
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                  <p className="text-secondary mb-4 line-clamp-3">
                     {video.description}
                   </p>
 
-                  <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                  <div className="flex items-center justify-between text-sm text-white mb-4">
                     <span>{video.views} views</span>
-                    <Badge variant="outline">{video.category}</Badge>
+                    <Badge className="text-white" variant="outline">
+                      {video.category}
+                    </Badge>
                   </div>
 
                   <div className="flex gap-2">
@@ -258,9 +260,7 @@ const LearnWithMe = () => {
                     <Button variant="outline" size="sm">
                       📝 Take Notes
                     </Button>
-                    <Button variant="outline" size="sm">
-                      📤 Share
-                    </Button>
+                   
                   </div>
                 </CardContent>
               </Card>
@@ -268,49 +268,7 @@ const LearnWithMe = () => {
           ))}
         </motion.div>
 
-        {/* Study Tips Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-20 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8"
-        >
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Maximize Your Learning
-            </h2>
-            <p className="text-gray-600">
-              Tips to get the most out of our video lessons
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                icon: "📝",
-                title: "Take Active Notes",
-                tip: "Write down new vocabulary, grammar rules, and examples as you watch.",
-              },
-              {
-                icon: "🔁",
-                title: "Repeat & Shadow",
-                tip: "Repeat after the speaker and mimic pronunciation to improve fluency.",
-              },
-              {
-                icon: "📅",
-                title: "Practice Regularly",
-                tip: "Schedule time every day or week to stay consistent with your learning.",
-              },
-            ].map((tip, idx) => (
-              <div key={idx} className=" p-6 rounded-xl shadow-sm text-center">
-                <div className="text-4xl mb-4">{tip.icon}</div>
-                <h3 className="text-lg font-semibold mb-2">{tip.title}</h3>
-                <p className="text-gray-600 text-sm">{tip.tip}</p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
+        {/* Study Tips */}
       </div>
     </div>
   );

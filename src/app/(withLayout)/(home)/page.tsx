@@ -12,9 +12,10 @@ const Home = () => {
   return (
     <div className="min-h-screen container mx-auto">
       <HeroSection />
-      <AgencyStats />
+
       <LanguageSelector />
       <LearnEnglish />
+      <AgencyStats />
       <Testimonial />
       <TrackYourProgress />
       <JoinOurGlobalCommunity />
